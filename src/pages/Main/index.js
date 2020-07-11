@@ -56,23 +56,23 @@ const Main = () => {
             </Item>
             <Item>
               <ItemImage source={require('../../../assets/icons/icon.png')} />
-              <TextItem>Item - 01</TextItem>
+              <TextItem>Item - 02</TextItem>
             </Item>
             <Item>
               <ItemImage source={require('../../../assets/icons/icon.png')} />
-              <TextItem>Item - 01</TextItem>
+              <TextItem>Item - 03</TextItem>
             </Item>
             <Item>
               <ItemImage source={require('../../../assets/icons/icon.png')} />
-              <TextItem>Item - 01</TextItem>
+              <TextItem>Item - 04</TextItem>
             </Item>
             <Item>
               <ItemImage source={require('../../../assets/icons/icon.png')} />
-              <TextItem>Item - 01</TextItem>
+              <TextItem>Item - 05</TextItem>
             </Item>
             <Item>
               <ItemImage source={require('../../../assets/icons/icon.png')} />
-              <TextItem>Item - 01</TextItem>
+              <TextItem>Item - 06</TextItem>
             </Item>
           </ScrollView>
         </ItemContainer>
