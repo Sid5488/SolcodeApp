@@ -1,10 +1,9 @@
 import React from 'react';
 import { Feather as Icon } from '@expo/vector-icons';
-import {
-    View,
-    TextInput
-} from 'react-native';
+import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
+import Input from '../../components/Input';
 
 import {
     Container,
@@ -14,7 +13,9 @@ import {
     Footer,
     Button,
     TextEntrar,
-    ArrowText
+    ArrowText,
+    ContainerLogin,
+    Logar
 } from './styles';
 
 const SignIn = () => {
@@ -22,6 +23,10 @@ const SignIn = () => {
 
     function handleNavigateToMain() {
         navigation.navigate('Main');
+    }
+
+    function handleNavigateToLogin() {
+        navigation.navigate('Login');
     }
 
     return (
@@ -36,9 +41,9 @@ const SignIn = () => {
                 </Description>
             </Main>
             <Footer>
-                <View>
-                    <TextInput placeholder="Digite seu nome!" />
-                </View>
+                <Input />
+                <Input />
+                <Input />
                 <Button onPress={handleNavigateToMain} >
                     <View>
                         <ArrowText>
@@ -49,8 +54,13 @@ const SignIn = () => {
                             />
                         </ArrowText>
                     </View>
-                    <TextEntrar>Entrar</TextEntrar>
+                    <TextEntrar>Sign In</TextEntrar>
                 </Button>
+                <ContainerLogin>
+                    <Logar onPress={handleNavigateToLogin}>
+                        Já tem uma conta? clique aqui!
+                    </Logar>
+                </ContainerLogin>
             </Footer>
         </Container>
     );

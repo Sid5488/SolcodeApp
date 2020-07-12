@@ -10,6 +10,7 @@ export const Container = styled.View`
 export const Main = styled.View`
     flex: 1px;
     justify-content: center;
+    margin-bottom: 10px;
 `;
 
 export const Title = styled.Text`
@@ -56,4 +57,15 @@ export const ArrowText = styled.Text`
     border-bottom-left-radius: 5px;
     padding-top: 13px;
     padding-left: 6px;
+`;
+
+export const ContainerLogin = styled.View`
+    flex: 1px;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const Logar = styled.Text`
+    color: white;
+    font-size: 20px;
 `;

@@ -53,6 +53,7 @@ export const Item = styled.View`
     align-items: center;
     margin-left: 7px;
     margin-right: 7px;
+    margin-bottom: 15px;
 `;
 
 export const TextItem = styled.Text``;
