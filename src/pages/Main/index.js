@@ -8,6 +8,8 @@ import {
 import { SvgUrl } from 'react-native-svg';
 import { Marker } from 'react-native-maps';
 
+import Menu from '../../components/Menu';
+
 import {
   Container,
   ContainerMap,
@@ -30,6 +32,7 @@ const Main = () => {
 
   return (
     <>
+      <Menu />
       <Container>
         <ScrollView>
           <ContainerMap>

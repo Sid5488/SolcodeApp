@@ -4,12 +4,16 @@
     "slug": "SolcodeApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icons/icon.png",
+    "icon": "./assets/icons/AppLogo.png",
     "splash": {
-      "image": "./assets/icons/splash.png",
-      "resizeMode": "contain",
+      "image": "./assets/defaults/Splash.png",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -17,10 +21,14 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "br.com.solcode.outsourcing"
     },
     "web": {
       "favicon": "./assets/icons/favicon.png"
+    },
+    "android": {
+      "package": "br.com.solcode.outsourcing"
     }
   }
 }
