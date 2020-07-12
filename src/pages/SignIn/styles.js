@@ -10,7 +10,7 @@ export const Container = styled.View`
 export const Main = styled.View`
     flex: 1px;
     justify-content: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 `;
 
 export const Title = styled.Text`
@@ -69,3 +69,15 @@ export const Logar = styled.Text`
     color: white;
     font-size: 20px;
 `;
+
+export const Input = styled.TextInput`
+    width: 295px;
+    height: 40px;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding-left: 24px;
+    padding-right: 24px;
+    font-size: 16px;
+`;
+
