@@ -21,8 +21,6 @@ import {
   SignInText
 } from './styles';
 
-import SignIn from '../SignIn';
-
 import { LoginRequest } from '../../store/modules/auth/actions';
 
 const Login = (props) => {
@@ -46,11 +44,11 @@ const Login = (props) => {
   return (
     <> 
       <ContainerText>
-          <Text style={{ fontSize: 40, color: 'white' }}>Solcode</Text>
-          <TextLogin>
-            Faça seu login
-          </TextLogin>
-        </ContainerText>
+        <Text style={{ fontSize: 40, color: 'white' }}>Solcode</Text>
+        <TextLogin>
+          Faça seu login
+        </TextLogin>
+      </ContainerText>
       <Container>
         <Input 
           placeholder="Digite seu e-mail"
