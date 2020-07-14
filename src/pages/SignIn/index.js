@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Feather as Icon } from '@expo/vector-icons';
-import { View, 
+import { 
+    View, 
     KeyboardAvoidingView, 
-    TouchableOpacity 
+    TouchableOpacity,
+    Text,
+    ScrollView
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -15,11 +18,11 @@ import {
     Button,
     TextEntrar,
     ArrowText,
-    ContainerLogin,
     Logar,
-    Input
+    Input,
+    ContainerVoltar
 } from './styles';
-import { TapGestureHandler } from 'react-native-gesture-handler';
+// import { TapGestureHandler } from 'react-native-gesture-handler';
 
 import api from '../../services/api';
 
@@ -31,6 +34,10 @@ const SignIn = () => {
 
     const navigation = useNavigation();
 
+    function handleNavigationBack() {
+        navigation.goBack('Login');
+    }
+
     function handleNavigateToLogin() {
         navigation.navigate('Login');
     }
@@ -41,12 +48,10 @@ const SignIn = () => {
             email: email,
             senha: senha,
             cpf: cpf
-        })
-        .then(function (response) {
+        }).then(function (response) {
             console.log(response.data)
             handleNavigateToLogin();
-        })
-        .catch(function (error) {
+        }).catch(function (error) {
             console.log(error);
         });
 
@@ -57,60 +62,76 @@ const SignIn = () => {
     }
 
     return (
-        <KeyboardAvoidingView style={{ flex: 1 }}>
-            <Container 
-                source={require('../../../assets/defaults/login-image.jpeg')}
-                imageStyle={{ width: 450, height: 750 }}
-            >
-                <Main>
-                    <Title>Seu Outsourcing App</Title>
-                    <Description>
-                        Ajudamos empressas a encontrarem a configuração eficiente!
-                    </Description>
-                </Main>
-                <Footer>
-                    <Input
-                        placeholder="Digite seu nome"
-                        value={ nome }
-                        onChangeText={ setNome } 
-                        autoCapitalize="sentences"
-                        autoCorrect={ true }
-                        autoFocus={ true }
-                    />
-                    <Input 
-                        placeholder="Digite seu CPF"
-                        keyboardAppearance="dark"
-                        keyboardType="numeric"
-                        value={ cpf }
-                        onChangeText={ setCpf }
-                    />
-                    <Input
-                        placeholder="Digire seu e-mail"
-                        value={ email }
-                        onChangeText={ setEmail }
-                        autoCorrect={ false }
-                        autoFocus={ true }
-                    />
-                    <Input
-                        placeholder="Digire sua senha"
-                        value={ senha }
-                        onChangeText={ setSenha }
-                        autoFocus={ true }
-                        secureTextEntry={ true }
-                    />
-                    <Button onPress={ insertUser } >
-                        <View>
-                            <ArrowText>
-                                <Icon 
-                                    name="arrow-right"
-                                    color="dodgerblue"
-                                    size={ 24 }
-                                />
-                            </ArrowText>
-                        </View>
-                        <TextEntrar>Sign In</TextEntrar>
-                    </Button>
-                    <ContainerLogin>
+        <>
+            <KeyboardAvoidingView style={{ flex: 1 }}>
+                <ContainerVoltar>
+                    <TouchableOpacity
+                        onPress={handleNavigationBack}
+                        activeOpacity={ 0.7 }
+                        style={{
+                            flexDirection: 'row'
+                        }}
+                    >
+                    <Icon name="arrow-left" size={ 24 } color="white" />
+                    <Text 
+                        style={{ color: 'white', marginTop: 2, marginLeft: 2 }}
+                    >
+                        Voltar
+                    </Text>
+                    </TouchableOpacity>
+                </ContainerVoltar>
+                <Container 
+                    source={require('../../../assets/defaults/login-image.jpeg')}
+                    imageStyle={{ width: 450, height: 750 }}
+                >
+                    <Main>
+                        <Title>Seu Outsourcing App</Title>
+                        <Description>
+                            Ajudamos empressas a encontrarem a configuração eficiente!
+                        </Description>
+                    </Main>
+                    <Footer>
+                        <Input
+                            placeholder="Digite seu nome"
+                            value={ nome }
+                            onChangeText={ setNome } 
+                            autoCapitalize="sentences"
+                            autoCorrect={ true }
+                            autoFocus={ true }
+                        />
+                        <Input 
+                            placeholder="Digite seu CPF"
+                            keyboardAppearance="dark"
+                            keyboardType="numeric"
+                            value={ cpf }
+                            onChangeText={ setCpf }
+                        />
+                        <Input
+                            placeholder="Digire seu e-mail"
+                            value={ email }
+                            onChangeText={ setEmail }
+                            autoCorrect={ false }
+                            autoFocus={ true }
+                        />
+                        <Input
+                            placeholder="Digire sua senha"
+                            value={ senha }
+                            onChangeText={ setSenha }
+                            autoFocus={ true }
+                            secureTextEntry={ true }
+                        />
+                        <Button onPress={ insertUser } >
+                            <View>
+                                <ArrowText>
+                                    <Icon 
+                                        name="arrow-right"
+                                        color="dodgerblue"
+                                        size={ 24 }
+                                    />
+                                </ArrowText>
+                            </View>
+                            <TextEntrar>Sign In</TextEntrar>
+                        </Button>
                         <TouchableOpacity
                             onPress={handleNavigateToLogin}
                             activeOpacity={0.7}
@@ -119,10 +140,10 @@ const SignIn = () => {
                                 Já tem uma conta? clique aqui!
                             </Logar>
                         </TouchableOpacity>
-                    </ContainerLogin>
-                </Footer>
-            </Container>
-        </KeyboardAvoidingView>
+                    </Footer>
+                </Container>
+            </KeyboardAvoidingView>
+        </>
     );
 };
 

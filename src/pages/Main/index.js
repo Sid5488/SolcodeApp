@@ -3,12 +3,13 @@ import { Feather as Icon } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import {
   TouchableOpacity,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import { SvgUrl } from 'react-native-svg';
 import { Marker } from 'react-native-maps';
 
 import Menu from '../../components/Menu';
+import LogOut from '../../components/LogOut';
 
 import {
   Container,
@@ -24,21 +25,13 @@ import {
 } from './styles';
 
 const Main = () => {
-  const navigation = useNavigation();
-
-  function handleNavigationBack() {
-    navigation.goBack();
-  }
-
   return (
     <>
       <Menu />
+      <LogOut />
       <Container>
         <ScrollView>
           <ContainerMap>
-            <TouchableOpacity onPress={handleNavigationBack}>
-              <Icon name="arrow-left" size={20} color="dodgerblue" />
-            </TouchableOpacity>
             <Title>Bem vindo.</Title>
             <Description>
               Encontre a melhor configuração pra sua empresa

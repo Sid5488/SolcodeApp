@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View,
+import { 
+  View,
   Text,
   TouchableOpacity,
-  AsyncStorage,
   Alert
 } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { Feather as Icon } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -16,74 +17,41 @@ import {
   TextEntrar,
   ContainerText,
   TextLogin,
-  ContainerVoltar
+  ContainerSignIn,
+  SignInText
 } from './styles';
 
-import api from '../../services/api';
+import SignIn from '../SignIn';
 
-const Login = () => {
+import { LoginRequest } from '../../store/modules/auth/actions';
+
+const Login = (props) => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [errorMessage, setErr] = useState({});
 
+  const dispatch = useDispatch();
+
   const navigation = useNavigation();
 
-  async function logar() {
-    await api.post('/usuarios/login', {
-      email: email,
-      senha: senha
-    }).then(async res => {
-      console.log(res.data);
-
-      const { usuario, token } = res.data;
-
-      await AsyncStorage.multiSet([
-        ['@SolcodeApp:token', token],
-        ['@SolcodeApp:usuario', JSON.stringify(usuario)],
-      ]);
-
-      Alert.alert('Login efeituado com sucesso');
-
-      handleNavigationToMain(false);
-    }).catch(err => {
-      console.log(err);
-
-      setErr({ errorMessage: err })
-    });
+  function logar() {
+    // Alert.alert('Entrou!!');
+    dispatch(LoginRequest(email, senha));
   }
 
-  function handleNavigationBack() {
-    navigation.goBack();
-  }
-
-  function handleNavigationToMain() {
-    navigation.navigate('Login');
+  function handleNavigateToSignIn() {
+    navigation.navigate('SignIn');
   }
 
   return (
-    <>
-      <ContainerVoltar>
-        <TouchableOpacity 
-          onPress={handleNavigationBack}
-          activeOpacity={ 0.7 }
-          style={{
-            flexDirection: 'row'
-          }}
-        >
-          <Icon name="arrow-left" size={ 24 } color="white" />
-          <Text 
-            style={{ color: 'white', marginTop: 2, marginLeft: 2 }}
-          >
-            Voltar
-          </Text>
-        </TouchableOpacity>
-      </ContainerVoltar>
-      <Container>
-        <ContainerText>
+    <> 
+      <ContainerText>
+          <Text style={{ fontSize: 40, color: 'white' }}>Solcode</Text>
           <TextLogin>
-            Bem-vindo de volta!
+            Faça seu login
           </TextLogin>
         </ContainerText>
+      <Container>
         <Input 
           placeholder="Digite seu e-mail"
           onChangeText={ setEmail } 
@@ -107,6 +75,16 @@ const Login = () => {
           </View>
           <TextEntrar>Login</TextEntrar>
         </Button>
+        <ContainerSignIn>
+          <TouchableOpacity
+              onPress={handleNavigateToSignIn}
+              activeOpacity={0.7}
+          >
+              <SignInText>
+                Ainda não tem uma conta? 
+              </SignInText>
+          </TouchableOpacity>
+        </ContainerSignIn>
       </Container>
     </>
   );
