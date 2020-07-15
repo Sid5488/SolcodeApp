@@ -1,42 +1,53 @@
 import React from 'react';
-import { NavigationContainer, Link } from '@react-navigation/native';
-import { useNavigation } from '@react-navigation/native';
-import {
-    DrawerItem,
-    createDrawerNavigator,
-    DrawerContentScrollView
-} from '@react-navigation/drawer';
+import { Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import SignIn from '../src/pages/SignIn';
 import Login from '../src/pages/Login';
 import Main from '../src/pages/Main';
-import { Linking } from 'react-native';
+import Chamados from '../src/pages/Chamados';
+import ListaChamados from '../src/pages/ListaChamados';
 
 const AppDrawer = createDrawerNavigator();
-const navigation = useNavigation();
+const AppStack = createStackNavigator();
+const TabStack = createBottomTabNavigator();
 
-const Screens = ({ navigation }) => {
+const TabRoutes = () => {
     return (
-        <AppDrawer.Navigator
-            initialRouteName="Main"
-            screenOptions={{
-                headerTransparent: true,
-                headerTitle: null,
-            }}
-        >
-            <AppDrawer.Screen options={{ title: 'Noticações' }} name="Main" component={ Main } />
-        </AppDrawer.Navigator>
+        <TabStack.Navigator>
+            <TabStack.Screen name="ListaChamados" component={ ListaChamados } />
+        </TabStack.Navigator>
     );
 }
 
-const DrawerContent = (props) => {
+const DrawerMenu = () => {
     return (
-        <DrawerContentScrollView { ...props } >
-            <DrawerItem
-                label="Notifications"
-                onPress={ () => props.navigation.navigate }
+        <AppDrawer.Navigator>
+            <AppDrawer.Screen 
+                options={{
+                    title: 'Notificações',
+                }} 
+                name="Main" 
+                component={ Main } 
             />
-        </DrawerContentScrollView>
+            <AppDrawer.Screen 
+                options={{
+                    title: 'Chamados'
+                }} 
+                name="Chamados" 
+                component={ Chamados } 
+            />
+            <AppDrawer.Screen
+                options={{
+                    title: 'Tab Routes',
+                }} 
+                name="TabRoutes"
+                component={ TabRoutes }
+            />
+        </AppDrawer.Navigator>
     );
 }
 
@@ -49,23 +60,54 @@ const Routes = ({ loggedIn }) => {
                     screenOptions={{
                         cardStyle: {
                             backgroundColor: '#f0f0f5'
-                        }
+                        },
+                        title: 'My home',
                     }}
                 >
-                    <AppDrawer.Screen options={{ swipeEnabled: false }} name="Login" component={ Login } />
-                    <AppDrawer.Screen options={{ swipeEnabled: false }} name="SignIn" component={ SignIn } />
+                    <AppDrawer.Screen 
+                        options={{
+                            swipeEnabled: false
+                        }} 
+                        name="Login" 
+                        component={ Login }
+                    />
+                    <AppDrawer.Screen 
+                        options={{
+                            swipeEnabled: false
+                        }} 
+                        name="SignIn" 
+                        component={ SignIn }
+                    />
                 </AppDrawer.Navigator>
             ):(
                 <AppDrawer.Navigator 
                     initialRouteName="Main"
                 >
-                    <AppDrawer.Screen name="Screens" component={ Screens } />
+                    <AppDrawer.Screen 
+                        options={{
+                            title: 'Notificações',
+                        }} 
+                        name="Main" 
+                        component={ Main } 
+                    />
+                    <AppDrawer.Screen 
+                        options={{
+                            title: 'Chamados'
+                        }} 
+                        name="Chamados" 
+                        component={ Chamados } 
+                    />
+                    <AppDrawer.Screen
+                        options={{
+                            title: 'Tab Routes',
+                        }} 
+                        name="TabRoutes"
+                        component={ TabRoutes }
+                    />
                 </AppDrawer.Navigator>
-            )}
+            )} 
         </NavigationContainer>
     );
 };
-
-
 
 export default Routes;

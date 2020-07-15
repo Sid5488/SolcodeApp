@@ -14,10 +14,12 @@ import {
   ContainerCard,
   Card,
   CardHeader,
-  TextCardHeaderRed,
   CardBody,
   TextCard,
-  TextCardHeaderGreen
+  TextCardHeader,
+  CardRedFlag,
+  CardWarningFlag,
+  CardGreenFlag
 } from './styles';
 
 import Menu from '../../components/Menu';
@@ -32,43 +34,77 @@ export default function Main() {
   return (
     <>
       <Menu />
-      <Container>
-        <ContainerText>
-          <TextBemVindo>
-            Bem vindo(a)
-          </TextBemVindo>
-        </ContainerText>
-        <ContainerCard>
-          <Card style={styles.shadowBox}>
-            <CardHeader>
-              <TextCardHeaderRed>Informativo Urgente!!</TextCardHeaderRed>
-            </CardHeader>
-            <CardBody>
-              <TextCard>
-              Lorem Ipsum is simply 
-              dummy text of the printing 
-              and typesetting industry. 
-              Lorem Ipsum has been the the 1500s, when an unknown printer took a galley.
-              </TextCard>
-            </CardBody>
-            <ButtonDetail />
-          </Card>
-          <Card style={styles.shadowBox}>
-            <CardHeader>
-              <TextCardHeaderGreen>Informativo Médio!!</TextCardHeaderGreen>
-            </CardHeader>
-            <CardBody>
-              <TextCard>
-              Lorem Ipsum is simply 
-              dummy text of the printing 
-              and typesetting industry. 
-              Lorem Ipsum has been the the 1500s, when an unknown printer took a galley.
-              </TextCard>
-            </CardBody>
-            <ButtonDetail />
-          </Card>
-        </ContainerCard>
-      </Container>
+      <ScrollView>
+        <Container>
+          <ContainerText>
+            <TextBemVindo>
+              Bem vindo(a)
+            </TextBemVindo>
+          </ContainerText>
+          <ContainerCard>
+            <Card style={styles.shadowBox}>
+              <CardHeader>
+                <TextCardHeader>Informativo Urgente!!</TextCardHeader>
+                <CardRedFlag />
+              </CardHeader>
+              <CardBody>
+                <TextCard>
+                Lorem Ipsum is simply 
+                dummy text of the printing 
+                and typesetting industry. 
+                Lorem Ipsum has been the the 1500s, when an unknown printer took a galley.
+                </TextCard>
+              </CardBody>
+              <ButtonDetail />
+            </Card>
+            <Card style={styles.shadowBox}>
+              <CardHeader>
+                <TextCardHeader>Informativo Médio!!</TextCardHeader>
+                <CardWarningFlag />
+              </CardHeader>
+              <CardBody>
+                <TextCard>
+                Lorem Ipsum is simply 
+                dummy text of the printing 
+                and typesetting industry. 
+                Lorem Ipsum has been the the 1500s, when an unknown printer took a galley.
+                </TextCard>
+              </CardBody>
+              <ButtonDetail />
+            </Card>
+            <Card style={styles.shadowBox}>
+              <CardHeader>
+                <TextCardHeader>Informativo Sutil!!</TextCardHeader>
+                <CardGreenFlag />
+              </CardHeader>
+              <CardBody>
+                <TextCard>
+                Lorem Ipsum is simply 
+                dummy text of the printing 
+                and typesetting industry. 
+                Lorem Ipsum has been the the 1500s, when an unknown printer took a galley.
+                </TextCard>
+              </CardBody>
+              <ButtonDetail />
+            </Card>
+            <Card style={styles.shadowBox}>
+              <CardHeader>
+                <TextCardHeader>Informativo Sutil!!</TextCardHeader>
+                <CardGreenFlag />
+              </CardHeader>
+              <CardBody>
+                <TextCard>
+                Lorem Ipsum is simply 
+                dummy text of the printing 
+                and typesetting industry. 
+                Lorem Ipsum has been the the 1500s, when an unknown printer took a galley.
+                </TextCard>
+              </CardBody>
+              <ButtonDetail />
+            </Card>
+          </ContainerCard>
+        </Container>
+      </ScrollView>
     </>
   );
 }
